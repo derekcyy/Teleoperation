@@ -4,6 +4,8 @@
 The Teleoperation Capstone Project aims to create a versatile and user-friendly Teleoperation Command Centre (TCC) that enhances unmanned systems' remote control and monitoring capabilities. This project utilizes a TurtleBot3 robot as the primary unmanned system to demonstrate the functionalities and improvements in teleoperation.
 
 ## Project structure
+
+```bash
 Capstone/
 ├── src/
 │   ├── __init__.py
