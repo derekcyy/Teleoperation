@@ -9,6 +9,7 @@ This project aims to develop a Teleoperation System that is intuitive, versatile
 1. Designing a user-friendly interface to make the technology accessible to a broader range of users.
 2. Integrating video streaming capabilities is essential for real-time monitoring and control in various unmanned systems.
 3. Incorporating real-time data processing for enhanced operational decision-making, ensuring a human is in the loop for critical decisions.
+
 By addressing these objectives, the project will significantly contribute to the evolution of teleoperation technologies, making them more efficient, safe, and accessible. This aligns with the sustainable innovation goals, focusing not only on technological advancement but also on its positive impact on society and the environment.
 
 ## Project structure
