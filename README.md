@@ -41,7 +41,7 @@ Capstone/
 └── README.md
 ```
 
-##Components
+## Components
 1. Main Application (main.py)
   - The entry point of the application. It initializes the FastAPI server, connects to MQTT and ROS, and sets up the API routes.
 2. MQTT Handler (mqtt_handler.py)
