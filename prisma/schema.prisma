@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-py"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model TurtleBot {
+  id       Int         @id @default(autoincrement())
+  name     String
+  telemetry Telemetry[]
+  battery  Battery[]
+  camera   Camera[]
+  lidar    Lidar[]
+}
+
+model Telemetry {
+  id          Int      @id @default(autoincrement())
+  turtleBotId Int
+  timestamp   DateTime
+  x           Float
+  y           Float
+  heading     Float
+  turtleBot   TurtleBot @relation(fields: [turtleBotId], references: [id])
+}
+
+model Battery {
+  id          Int      @id @default(autoincrement())
+  turtleBotId Int
+  timestamp   DateTime
+  voltage     Float
+  current     Float
+  percentage  Float
+  turtleBot   TurtleBot @relation(fields: [turtleBotId], references: [id])
+}
+
+model Camera {
+  id          Int      @id @default(autoincrement())
+  turtleBotId Int
+  timestamp   DateTime
+  image       Bytes
+  turtleBot   TurtleBot @relation(fields: [turtleBotId], references: [id])
+}
+
+model Lidar {
+  id          Int      @id @default(autoincrement())
+  turtleBotId Int
+  timestamp   DateTime
+  ranges      Float[]
+  turtleBot   TurtleBot @relation(fields: [turtleBotId], references: [id])
+}

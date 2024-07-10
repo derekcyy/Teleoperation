@@ -1,0 +1,21 @@
+{
+  "name": "teleops-capstone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "prisma": "^5.11.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.5.0",
+    "pg": "^8.8.0"
+  },
+  "scripts": {
+    "prisma": "prisma",
+    "prisma:generate": "prisma generate --schema=prisma/schema.prisma"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  }
+}
+
