@@ -1,25 +1,29 @@
-import { Client as PahoClient, Message as PahoMessage } from 'paho-mqtt';
+import mqtt from 'mqtt';
 
-const client = new PahoClient('ws://broker.hivemq.com:8000/mqtt', 'clientId');
+let client = null;
 
-client.connect({
-    onSuccess: () => {
-        console.log('Connected to MQTT broker');
-        client.subscribe('turtlebot3/#');
-    },
-    onFailure: (err) => {
-        console.error('Failed to connect to MQTT broker:', err);
-    },
-});
+const connectClient = () => {
+  return new Promise((resolve, reject) => {
+    client = mqtt.connect('ws://192.168.18.22:9001'); // Use the WebSocket port
 
-client.onMessageArrived = (message) => {
-    console.log('Message received:', message.payloadString);
+    client.on('connect', () => {
+      console.log('Connected to MQTT broker');
+      resolve(client);
+    });
+
+    client.on('error', (err) => {
+      console.error('Failed to connect to MQTT broker:', err);
+      reject(err);
+    });
+  });
 };
 
 const sendMessage = (topic, payload) => {
-    const message = new PahoMessage(payload);
-    message.destinationName = topic;
-    client.send(message);
+  if (!client || !client.connected) {
+    console.error('Client not connected');
+    return;
+  }
+  client.publish(topic, payload);
 };
 
-export { client, sendMessage };
+export { connectClient, sendMessage };

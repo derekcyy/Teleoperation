@@ -1,48 +1,25 @@
-import React from 'react';
-import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
-import mqtt from 'mqtt';
-
-const client = mqtt.connect('ws://broker.hivemq.com:8000/mqtt');
+import React, { useEffect } from 'react';
+import { connectClient, sendMessage } from '../mqttClient';
 
 const TeleopsKeys = () => {
-  const sendCommand = (command) => {
-    client.publish('turtlebot3/command', JSON.stringify({ command }), (err) => {
-      if (err) {
-        console.error('Error sending command:', err);
-      }
-    });
-  };
+  useEffect(() => {
+    connectClient()
+      .then(() => {
+        console.log('Client connected in TeleopsKeys');
+      })
+      .catch((err) => {
+        console.error('Failed to connect in TeleopsKeys:', err);
+      });
+  }, []);
 
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h5" component="h2">
-          Teleoperation Commands
-        </Typography>
-        <Grid container spacing={2} justifyContent="center" alignItems="center">
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={() => sendCommand('forward')}>
-              Forward
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={() => sendCommand('left')}>
-              Left
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={() => sendCommand('right')}>
-              Right
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={() => sendCommand('backward')}>
-              Backward
-            </Button>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+    <div>
+      <h2>Teleoperation Commands</h2>
+      <button onClick={() => sendMessage('turtlebot3/move', JSON.stringify({ linear: { x: 0.2 }, angular: { z: 0.0 } }))}>Forward</button>
+      <button onClick={() => sendMessage('turtlebot3/move', JSON.stringify({ linear: { x: 0.0 }, angular: { z: 0.2 } }))}>Left</button>
+      <button onClick={() => sendMessage('turtlebot3/move', JSON.stringify({ linear: { x: 0.0 }, angular: { z: -0.2 } }))}>Right</button>
+      <button onClick={() => sendMessage('turtlebot3/move', JSON.stringify({ linear: { x: -0.2 }, angular: { z: 0.0 } }))}>Backward</button>
+    </div>
   );
 };
 
