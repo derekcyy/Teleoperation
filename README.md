@@ -135,63 +135,63 @@ Adapter that bridges the MQTT messages and ROS topics for TurtleBot3
 ## Setup Turtlebot3
 ### Find out the IP address and set the network configuration
 **Login to Turtlebot using Keyboard and Monitor (micro HDMI cable)**
-        `Username: ubuntu`
-        `Password: turtlebot`
+`Username: ubuntu`
+`Password: turtlebot`
 
 **After logging into turtlebot3 ubuntu, use**
-        ```bash
-        ifconfig
-        ```
-    `IP Address (RPI): 192.168.xx.xxx *get the IP address from wlan0*`
+```bash
+ifconfig
+```
+`IP Address (RPI): 192.168.xx.xxx *get the IP address from wlan0*`
 
 **Open the file and update the ROS IP setting**
-        ```bash
-        nano ~/.bashrc
-        ```
+```bash
+nano ~/.bashrc
+```
 
 **change:**
-        ```
-        export ROS_MASTER_URI=http://{IP_ADDRESS_OF_REMOTE_PC}:11311
-        export ROS_HOSTNAME={IP_ADDRESS_OF_RASPBERRY_PI_4}
-        ```
+```
+export ROS_MASTER_URI=http://{IP_ADDRESS_OF_REMOTE_PC}:11311
+export ROS_HOSTNAME={IP_ADDRESS_OF_RASPBERRY_PI_4}
+```
 
 **Once complete**
-        ```bash
-        source ~/.bashrc
-        ```
+```bash
+source ~/.bashrc
+```
 
 ### Set up the WIFI network
 **Find the Netplan Configuration File:**
 The Netplan configuration files are typically located in the `/etc/netplan/` directory.
 *List the files in the directory to find the configuration file (it usually ends with `.yaml`)*
         
-        ```bash
-        ls /etc/netplan/
-        ```
+```bash
+ls /etc/netplan/
+```
         The file is often named `50-cloud-init.yaml` or `01-netcfg.yaml`.
 
 **Edit the Configuration File:**
 Open the Netplan configuration file using a text editor:      
-        ```bash
-        sudo nano /etc/netplan/50-cloud-init.yaml
-        ```
+```bash
+sudo nano /etc/netplan/50-cloud-init.yaml
+```
         
 **Update the Wi-Fi Settings:**
 Add or update the Wi-Fi configuration in the file. Configuration:
         
-        ```yaml
-        network:
-          version: 2
-          renderer: networkd
-          wifis:
-            wlan0:
-              dhcp4: true
-              optional: true
-              access-points:
-                "your_new_network_ssid":
-                  password: "your_new_network_password"
-        
-        ```
+```yaml
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlan0:
+      dhcp4: true
+      optional: true
+      access-points:
+        "your_new_network_ssid":
+          password: "your_new_network_password"
+
+```
         
     - Replace `"your_new_network_ssid"` and `"your_new_network_password"` with your actual network's SSID and password.
 **Save and Exit:**
@@ -202,24 +202,24 @@ Add or update the Wi-Fi configuration in the file. Configuration:
         
 **SSH into RPI**
 
-        ```bash
-        ssh -X ubuntu@192.168.XX.XXX
-        ```
+```bash
+ssh -X ubuntu@192.168.XX.XXX
+```
 Password: `turtlebot`
         
 **Launch each node with terminal (after ssh):**
-        `$ roscore`
-        `$ export TURTLEBOT3_MODEL=burger` *only use this if the nodes are installed in the linux* 
-        `$ roslaunch turtlebot3_bringup turtlebot3_robot.launch`
-        `$ roslaunch camera_launch cv_camera.launch`
-        `$ rosrun web_video_server web_video_server`
-        `$ roslaunch rosbridge_server rosbridge_websocket.launch`
+`$ roscore`
+`$ export TURTLEBOT3_MODEL=burger` *only use this if the nodes are installed in the linux* 
+`$ roslaunch turtlebot3_bringup turtlebot3_robot.launch`
+`$ roslaunch camera_launch cv_camera.launch`
+`$ rosrun web_video_server web_video_server`
+`$ roslaunch rosbridge_server rosbridge_websocket.launch`
         
 **The following shall only run in sequence #only for linux**
-        `$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch` 
-        `$ roslaunch turtlebot3_slam turtlebot3_slam.launch`
-        `$ rosrun map_server map_saver -f ~/map`
-        `$ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml` 
+`$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch` 
+`$ roslaunch turtlebot3_slam turtlebot3_slam.launch`
+`$ rosrun map_server map_saver -f ~/map`
+`$ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml` 
 
 ## Setup the project
 ### 1. Set Up the Python Environment
@@ -233,48 +233,48 @@ pip install -r requirements.txt
   - Ensure PostgreSQL server is running and that the credentials in  `.env` file are correct.
   
   - Check the status of migrations
-          ```bash
-          npx prisma migrate status
-          ```
+```bash
+npx prisma migrate status
+```
   - Run/Re-run Prisma migrations
-          ```bash
-          npx prisma migrate dev --name init
-          npx prisma generate
-          ```
+```bash
+npx prisma migrate dev --name init
+npx prisma generate
+```
 ### 3. Run MQTT broker  and postgresql
 **Start the MQTT Broker (Mosquitto)**
 Open a terminal and start the MQTT broker:
 
-          ```bash
-          brew services start mosquitto
-          ```
+```bash
+brew services start mosquitto
+```
 
 **Ensure PostgreSQL is Running**
 Make sure your PostgreSQL server is running. You can start it with:
-          ```bash
-          sudo brew services start postgresql
-          ```
+```bash
+sudo brew services start postgresql
+```
 
 **Check PostgreSQL Status**:
 Ensure PostgreSQL is running by checking its status:
-          ```bash
-          brew services list
-          ```
+```bash
+brew services list
+```
 
 Should see `postgresql@14` listed as `started`.
   
 ## Run the Application
 **Run the backend server**
-          ```bash
-          cd backend
-          uvicorn src.main:app --reload --host 0.0.0.0 --port 8080
-          ```
+```bash
+cd backend
+uvicorn src.main:app --reload --host 0.0.0.0 --port 8080
+```
 **Run the frontend server**
-          ```bash
-          cd frontend
-          npm install
-          npm start
-          ```
+```bash
+cd frontend
+npm install
+npm start
+```
 
 ## Interacting with the Turtlebot3
 ### 1. MQTT and ROS Integration on TURTLEBOT3
