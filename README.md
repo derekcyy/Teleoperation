@@ -439,7 +439,7 @@ SELECT * FROM public."Lidar";
 
 ```
 
-## Future improvement that can be made
+## Future improvements that can be made
 *Show Video on Frontend:*
 Current Method: Using images for video streaming.
 Improved Method: Using WebRTC for smoother video streaming.
