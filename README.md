@@ -74,63 +74,63 @@ TeleoperationCapstone/
 
 ## Components
 ### **Backend**
-### 1. prisma/schema.prisma
-Defines the database schema using Prisma ORM. It contains models that map to database tables.
-
-### 2. src/api/routes/
-Contains route handlers for different API endpoints.
-- battery.py: Manages battery-related API requests.
-- camera.py: Handles camera-related API requests.
-- lidar.py: Manages lidar-related API requests.
-- telemetry.py: Handles telemetry data API requests.
-- waypoint.py: Manages waypoint-related API requests.
-
-### 3. src/database.py
-Contains database connection logic.
-
-### 4. src/main.py
-FastAPI application that uses Prisma to establish connections with a database and an MQTT broker. 
-It manages TurtleBot3's telemetry, battery, camera, and lidar data; it transforms MQTT messages into database entries and provides this data via API endpoints. 
-
-### 5. src/models.py
-Defines the data models used in the application.
-
-### 6. src/mqtt_handler.py
-Handles MQTT message publishing and subscribing.
-
-### 7. src/ros_handler.py
-Manages interaction between ROS (Robot Operating System) and the backend.
-
-### 8. .env
-Contains environment variables for the backend configuration, such as 
-1. database URL
-2. MQTT broker and port
+        ### 1. prisma/schema.prisma
+        Defines the database schema using Prisma ORM. It contains models that map to database tables.
+        
+        ### 2. src/api/routes/
+        Contains route handlers for different API endpoints.
+        - battery.py: Manages battery-related API requests.
+        - camera.py: Handles camera-related API requests.
+        - lidar.py: Manages lidar-related API requests.
+        - telemetry.py: Handles telemetry data API requests.
+        - waypoint.py: Manages waypoint-related API requests.
+        
+        ### 3. src/database.py
+        Contains database connection logic.
+        
+        ### 4. src/main.py
+        FastAPI application that uses Prisma to establish connections with a database and an MQTT broker. 
+        It manages TurtleBot3's telemetry, battery, camera, and lidar data; it transforms MQTT messages into database entries and provides this data via API endpoints. 
+        
+        ### 5. src/models.py
+        Defines the data models used in the application.
+        
+        ### 6. src/mqtt_handler.py
+        Handles MQTT message publishing and subscribing.
+        
+        ### 7. src/ros_handler.py
+        Manages interaction between ROS (Robot Operating System) and the backend.
+        
+        ### 8. .env
+        Contains environment variables for the backend configuration, such as 
+        1. database URL
+        2. MQTT broker and port
 
 ### **Frontend**
-### 1. public/index.html
-The main HTML file that serves the React app.
-
-### 2. src/components/
-Contains React components used in the application.
-DataDisplay.js: Component for displaying telemetry, battery, and sensor data.
-TeleopsKeys.js: Component for teleoperation controls (buttons to move the robot).
-VideoStream.js: Component for displaying the live video stream from the robot's camera.
-
-### 3. src/App.js
-The main React component brings together all other components.
-
-### 4. src/index.css
-Global CSS styles for the frontend.
-
-### 5. src/index.js
-The entry point for the React app. It renders the App component into the DOM.
-
-### 6. src/mqttClient.js
-Manages MQTT client connections and message handling for the frontend.
+        ### 1. public/index.html
+        The main HTML file that serves the React app.
+        
+        ### 2. src/components/
+        Contains React components used in the application.
+        DataDisplay.js: Component for displaying telemetry, battery, and sensor data.
+        TeleopsKeys.js: Component for teleoperation controls (buttons to move the robot).
+        VideoStream.js: Component for displaying the live video stream from the robot's camera.
+        
+        ### 3. src/App.js
+        The main React component brings together all other components.
+        
+        ### 4. src/index.css
+        Global CSS styles for the frontend.
+        
+        ### 5. src/index.js
+        The entry point for the React app. It renders the App component into the DOM.
+        
+        ### 6. src/mqttClient.js
+        Manages MQTT client connections and message handling for the frontend.
 
 ### **Turtlebot**
-### "ros_mqtt_bridge.py" 
-Adapter that bridges the MQTT messages and ROS topics for TurtleBot3
+        ### "ros_mqtt_bridge.py" 
+        Adapter that bridges the MQTT messages and ROS topics for TurtleBot3
 
 ## Setup Turtlebot3
 ### Find out the IP address and set the network configuration
