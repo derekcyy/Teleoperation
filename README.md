@@ -470,6 +470,6 @@ SELECT * FROM public."Lidar";
 
 *TeleopsKeys.js* 
 - Current Method: React UI publishing the ROS message to the robot directly.
-- - Improved Method: Move data is sent to the API server via WebSockets. The API then publishes an MQTT message, which the adapter subscribes to and translates into a ROS message.
+- Improved Method: Move data is sent to the API server via WebSockets. The API then publishes an MQTT message, which the adapter subscribes to and translates into a ROS message.
 
 
