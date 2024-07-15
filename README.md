@@ -441,35 +441,35 @@ SELECT * FROM public."Lidar";
 
 ## Future improvements that can be made
 *Show Video on Frontend:*
-Current Method: Using images for video streaming.
-Improved Method: Using WebRTC for smoother video streaming.
+- Current Method: Using images for video streaming.
+- Improved Method: Using WebRTC for smoother video streaming
 
 *Separate API Endpoints into Service Folders:*
-Current Method: API endpoints might be scattered or not organized.
-Improved Method: Organize API endpoints into service folders in the frontend for better maintainability and readability.
+- Current Method: API endpoints might be scattered or not organized.
+- Improved Method: Organize API endpoints into service folders in the frontend for better maintainability and readability.
 
 *Show Charts for Data:*
-Current Method: Displaying only the most current data.
-Improved Method: Use charts to display data from the database for better data visualization.
+- Current Method: Displaying only the most current data.
+- Improved Method: Use charts to display data from the database for better data visualization.
 
 *Map Data and Robot Position:*
-Current Method: Might not be displaying map data.
-Improved Method: Show the map and the robot's position on it.
+- Current Method: Might not be displaying map data.
+- Improved Method: Show the map and the robot's position on it.
 
 *Connection Method:*
-Current Method: Using MQTT for backend communication.
-Improved: Use WebSockets for backend communication.
+- Current Method: Using MQTT for backend communication.
+- Improved: Use WebSockets for backend communication.
 
 *Improve Visual Styling of Components:*
-Current Method: Basic styling.
-Improved Method: Enhance the UI with better CSS or use styling libraries like Material-UI or Bootstrap.
+- Current Method: Basic styling.
+- Improved Method: Enhance the UI with better CSS or use styling libraries like Material-UI or Bootstrap.
 
 *DataDisplay.js*
-Current Method: Directly from turtlebot3
-Improved Method: Fetched from the API server
+- Current Method: Directly from turtlebot3.
+- Improved Method: Fetched from the API server.
 
 *TeleopsKeys.js* 
-Current Method: React UI publishing the ROS message to the robot directly
-Improved Method: Move data is sent to the API server via WebSockets. The API then publishes an MQTT message, which the adapter subscribes to and translates into a ROS message
+- Current Method: React UI publishing the ROS message to the robot directly.
+- - Improved Method: Move data is sent to the API server via WebSockets. The API then publishes an MQTT message, which the adapter subscribes to and translates into a ROS message.
 
 
