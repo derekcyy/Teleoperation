@@ -135,8 +135,8 @@ Adapter that bridges the MQTT messages and ROS topics for TurtleBot3
 ## Setup Turtlebot3
 ### Find out the IP address and set the network configuration
 **Login to Turtlebot using Keyboard and Monitor (micro HDMI cable)**
-        Username: ubuntu
-        Password: turtlebot
+        `Username: ubuntu`
+        `Password: turtlebot`
 
 **After logging into turtlebot3 ubuntu, use**
         ```bash
